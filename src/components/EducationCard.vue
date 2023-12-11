@@ -96,7 +96,7 @@
                         </el-col>
                     </el-row>
                     <el-row :lg="24" :md="24">
-                        <el-input type="textarea" :rows="10" v-model="currentData.edDescription" placeholder="Description"
+                        <el-input type="textarea" :rows="10" v-model="currentData.edDesContent" placeholder="Description"
                             @input="handleInput"></el-input>
                     </el-row>
                 </el-col>

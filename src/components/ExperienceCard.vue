@@ -87,7 +87,7 @@
                         </el-col>
                     </el-row>
                     <el-row :lg="24" :md="24">
-                        <el-input type="textarea" :rows="10" v-model="currentData.jobDescription" placeholder="Description"
+                        <el-input type="textarea" :rows="10" v-model="currentData.jobDesContent" placeholder="Description"
                             @input="handleInput"></el-input>
                     </el-row>
                 </el-col>
@@ -104,72 +104,69 @@
 <script>
 import moment from 'moment'
 export default {
-  props: [
-    'id',
-    'companyName',
-    'startDate',
-    'endDate',
-    'jobTitle',
-    'companyLocation',
-    'jobDescription',
-    'jobDesContent',
-  ],
-  emits: ['onRemove', 'onUpdate'],
-  data() {
-    return {
-      minLengthRule: [(v) => v.length >= 255 || 'Min 255 characters'],
-      currentData: {
-        id: this.id,
-        companyName: this.companyName,
-        startDate: this.startDate,
-        endDate: this.endDate,
-        jobTitle: this.jobTitle,
-        companyLocation: this.companyLocation,
-        jobDescription: this.jobDescription,
-        jobDesContent: this.jobDesContent,
-      },
+    props: [
+        'id',
+        'companyName',
+        'startDate',
+        'endDate',
+        'jobTitle',
+        'companyLocation',
+        'jobDescription',
+        'jobDesContent',
+    ],
+    emits: ['onRemove', 'onUpdate'],
+    data() {
+        return {
+            minLengthRule: [(v) => v.length >= 255 || 'Min 255 characters'],
+            currentData: {
+                id: this.id,
+                companyName: this.companyName,
+                startDate: this.startDate,
+                endDate: this.endDate,
+                jobTitle: this.jobTitle,
+                companyLocation: this.companyLocation,
+                jobDescription: this.jobDescription,
+                jobDesContent: this.jobDesContent,
+            },
 
-      PREV_LENGTH: 0,
-    }
-  },
-
-  methods: {
-    handleInput(event) {
-      const bullet = '\u2022'
-      const newLength = this.currentData.jobDesContent.length
-
-      const characterCode = this.currentData.jobDesContent
-        .substr(-1)
-        .charCodeAt(0)
-
-      if (newLength > this.PREV_LENGTH) {
-        if (characterCode === 10) {
-          const lines = this.currentData.jobDesContent.split('\n')
-          const currentLine = lines[lines.length - 1]
-          const indentation = this.getIndentation(currentLine)
-          this.currentData.jobDesContent = `${this.currentData.jobDesContent}${indentation}${bullet} `
-        } else if (newLength === 1) {
-          this.currentData.jobDesContent = `${bullet} ${this.currentData.jobDesContent}`
+            PREV_LENGTH: 0,
         }
-      }
-      this.currentData.jobDescription = this.currentData.jobDesContent.replace(/• /g, '').replace(/\n/g, '||').split("||");
-  
+    },
 
+    methods: {
+        handleInput(event) {
+            const bullet = '\u2022'
+            const newLength = this.currentData.jobDesContent.length
 
-      this.updateExperience()
-      this.PREV_LENGTH = newLength
+            const characterCode = this.currentData.jobDesContent
+                .substr(-1)
+                .charCodeAt(0)
+
+            if (newLength > this.PREV_LENGTH) {
+                if (characterCode === 10) {
+                    const lines = this.currentData.jobDesContent.split('\n')
+                    const currentLine = lines[lines.length - 1]
+                    const indentation = this.getIndentation(currentLine)
+                    this.currentData.jobDesContent = `${this.currentData.jobDesContent}${indentation}${bullet} `
+                } else if (newLength === 1) {
+                    this.currentData.jobDesContent = `${bullet} ${this.currentData.jobDesContent}`
+                }
+            }
+            this.currentData.jobDescription = this.currentData.jobDesContent.replace(/• /g, '').replace(/\n/g, '||').split("||");
+            this.updateExperience()
+            this.PREV_LENGTH = newLength
+        },
+        getIndentation(line) {
+            const match = line.match(/^\s+/)
+            return match ? match[0] : ''
+        },
+        formatDate(val) {
+            return moment(val).format('MMMM YYYY')
+        },
+        updateExperience() {
+            // Emit an event to update the resume data in the parent component
+            this.$emit('onUpdate', this.currentData)
+        },
     },
-    getIndentation(line) {
-      const match = line.match(/^\s+/)
-      return match ? match[0] : ''
-    },
-    formatDate(val) {
-      return moment(val).format('MMMM YYYY')
-    },
-    updateExperience() {
-      // Emit an event to update the resume data in the parent component
-      this.$emit('onUpdate', this.currentData)
-    },
-  },
 }
 </script>

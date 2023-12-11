@@ -7,11 +7,9 @@ export default createStore({
     clientInformation: {},
   },
   getters: {
-    getters: {
       isLoading: (state) => state.isLoading,
       error: (state) => state.error,
       clientInformation: (state) => state.clientInformation,
-    },
   },
   mutations: {
     SET_ERROR(state, error) {
