@@ -5,7 +5,7 @@
             <template #title>
                 <el-col class="pa-0 mx-auto">
                     <!-- <br> -->
-                    <div class="text-caption">{{ currentData.certName }} <span style="color: grey">({{
+                    <div class="text-caption">{{ currentData.schoolName }} <span style="color: grey">({{
                         formatDate(currentData.startDate) }} -
                             {{ formatDate(currentData.endDate) }})</span></div>
                 </el-col>
