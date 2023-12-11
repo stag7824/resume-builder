@@ -5,7 +5,7 @@
             <template #title>
                 <el-col class="pa-0 mx-auto">
                     <!-- <br> -->
-                    <div class="text-caption">{{ currentData.certName }} <span style="color: grey">({{
+                    <div class="text-caption">{{ currentData.schoolName }} <span style="color: grey">({{
                         formatDate(currentData.startDate) }} -
                             {{ formatDate(currentData.endDate) }})</span></div>
                 </el-col>
@@ -101,13 +101,14 @@
                     </el-row>
                 </el-col>
             </el-row>
-
-            <el-button type="danger" @click="$emit('onRemove', id)">
-                <el-icon>
-                    <Delete />
-                </el-icon>
-                Remove
-            </el-button>
+            <div style="text-align: center;">
+                <el-button type="danger" @click="$emit('onRemove', id)">
+                    <el-icon>
+                        <Delete />
+                    </el-icon>
+                    Remove
+                </el-button>
+            </div>
         </el-collapse-item>
     </el-collapse>
 </template>

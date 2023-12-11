@@ -92,12 +92,14 @@
                     </el-row>
                 </el-col>
             </el-row>
-            <el-button type="danger" @click="$emit('onRemove', id)">
-                <el-icon>
-                    <Delete />
-                </el-icon>
-                Remove
-            </el-button>
+            <div style="text-align: center;">
+                <el-button type="danger" @click="$emit('onRemove', id)">
+                    <el-icon>
+                        <Delete />
+                    </el-icon>
+                    Remove
+                </el-button>
+            </div>
         </el-collapse-item>
     </el-collapse>
 </template>
