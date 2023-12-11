@@ -1,19 +1,22 @@
 <template>
-    <!-- Education -->
-    <el-collapse>
+    <el-collapse accordion>
         <el-collapse-item>
+            <!-- Title for the el-collapse -->
             <template #title>
                 <el-col class="pa-0 mx-auto">
-                    <div class="text-caption">{{ currentData.certName }}</div>
-                    <div class="text-subtitle-2" style="color: grey">
+                    <!-- <br> -->
+                    <div class="text-caption">{{ currentData.certName }} <span style="color: grey">({{
+                        formatDate(currentData.startDate) }} -
+                            {{ formatDate(currentData.endDate) }})</span></div>
+                    <!-- <div class="text-subtitle-2" style="color: grey">
                         {{ formatDate(currentData.startDate) }} -
                         {{ formatDate(currentData.endDate) }}
-                    </div>
+                    </div> -->
                 </el-col>
             </template>
+            <!-- Title and Link -->
             <el-row :lg="24" :md="24" :sd="24" :xs="24">
-                <!-- Other components inside el-collapse-item -->
-                <el-col :span="12" :lg="24" :xs="24" :sm="12" :md="12">
+                <el-col :span="12" :lg="12" :xs="24" :sm="12" :md="12">
                     <!-- Title -->
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
@@ -42,28 +45,22 @@
                         <el-input v-model="currentData.link" placeholder="Link" clearable
                             @input="updateCertificate"></el-input>
                     </el-row>
-
                 </el-col>
                 <!-- For el-textarea, replace v-textarea -->
-
             </el-row>
-
-
-
+            <!-- Start and End -->
             <el-row :lg="24" :md="24" :sd="24" :xs="24">
                 <!-- Other components inside el-collapse-item -->
                 <!-- Start Date -->
-                <el-col :span="12" :lg="24" :xs="24" :sm="12" :md="12">
+                <el-col :span="12" :lg="12" :xs="24" :sm="12" :md="12">
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
                             <div style="text-align:center;">
-
                                 <label>Start</label>
                             </div>
                         </el-col>
                     </el-row>
                     <el-row :lg="24" :md="24">
-
                         <el-date-picker v-model="currentData.startDate" type="date" placeholder="Start Date" :size="size"
                             clearable @change="updateCertificate" />
                     </el-row>
@@ -73,7 +70,6 @@
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
                             <div style="text-align:center;">
-
                                 <label>End</label>
                             </div>
                         </el-col>
@@ -94,7 +90,6 @@
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
                             <div style="text-align:center;">
-
                                 <label>Job Description</label>
                             </div>
                         </el-col>
@@ -105,7 +100,7 @@
                     </el-row>
                 </el-col>
             </el-row>
-            
+
             <el-button type="danger" @click="$emit('onRemove', id)">
                 <el-icon>
                     <Delete />
@@ -120,7 +115,7 @@
 import moment from 'moment'
 import { ref } from 'vue'
 const size = ref < 'default' | 'large' | 'small' > ('large')
-
+const activeName = ref('1')
 
 export default {
     props: [
@@ -193,29 +188,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.demo-date-picker {
-    display: flex;
-    width: 100%;
-    padding: 0;
-    flex-wrap: wrap;
-}
-
-.demo-date-picker .block {
-    padding: 30px 0;
-    text-align: center;
-    border-right: solid 1px var(--el-border-color);
-    flex: 1;
-}
-
-.demo-date-picker .block:last-child {
-    border-right: none;
-}
-
-.demo-date-picker .demonstration {
-    display: block;
-    color: var(--el-text-color-secondary);
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-</style>
+<style scoped></style>
