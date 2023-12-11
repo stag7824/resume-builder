@@ -7,6 +7,11 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  {
+    path: '/edit/resume',
+    name: 'edit.resume',
+    component: ()=> import("@/views/ResumeView.vue")
+  },
 
   {
     path: '/about',
