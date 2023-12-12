@@ -8,16 +8,21 @@
                 <!-- Education -->
                 <el-collapse-item name="1">
                     <template #title>
-                        &nbsp;Education &nbsp;<el-icon><Reading /></el-icon>
+                        &nbsp;Education &nbsp;<el-icon>
+                            <Reading />
+                        </el-icon>
                     </template>
                     <div>
                         <br>
+                        <draggable :list="resume.educations">
                         <EducationCard v-for="education in resume.educations" :key="education.id" :id="education.id"
                             :school-name="education.schoolName" :degree="education.degree" :start-date="education.startDate"
                             :end-date="education.endDate" :school-location="education.schoolLocation"
                             :job-description="education.edDescription" :job-des-content="education.edDesContent"
                             @on-remove="removeEducation" @on-update="updateEducation" v-bind="education">
                         </EducationCard>
+                    </draggable>
+
                     </div>
                     <div style="
                         text-align: center;
@@ -86,7 +91,120 @@
         </el-col>
         <!-- Preview -->
         <el-col :span="12" :lg="12" :md="12" :sd="24" :xs="24">
-            
+            <el-row class="bg-grey-darken-2 pa-4 position-relative" :span="24" :lg="24" :md="24" :sd="24" :xs="24"
+                style="text-align: center;">
+                <div class="pa-10 bg-white">
+                    <div class="page-document" id="document_page">
+                        <!-- Preview Starts from here -->
+                        <!-- Experiences -->
+                        <div class="page-section" v-if="resume.experiences.length">
+                            <div class="page-section-title">
+                                EXPERIENCES
+                                <div class="page-divider"></div>
+                                <div class="page-sub-section" v-for="experience in resume.experiences" :key="experience.id">
+                                    <div class="page-section-content">
+                                        <div class="page-section-content-title-1">
+                                            {{ experience.companyName }}
+                                        </div>
+                                        <div class="page-section-content-title-1">
+                                            {{ experience.companyLocation }}
+                                        </div>
+                                    </div>
+                                    <div class="page-section-content">
+                                        <div class="page-section-content-title-2">
+                                            {{ experience.jobTitle }}
+                                        </div>
+                                        <div class="page-section-content-title-3">
+                                            {{ formatDate(experience.startDate) }} -
+                                            {{ formatDate(experience.endDate) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="page-section-list-group">
+                                        <ul>
+                                            <li v-for="e in experience.jobDescription" :key="e.id">
+                                                {{ e }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Education -->
+                        <div class="page-section" v-if="resume.educations.length">
+                            <div class="page-section-title">
+                                EDUCATION
+                                <div class="page-divider"></div>
+                                <div class="page-sub-section" v-for="education in resume.educations" :key="education.id">
+                                    <div class="page-section-content">
+                                        <div class="page-section-content-title-1">
+                                            {{ education.schoolName }}
+                                        </div>
+                                        <div class="page-section-content-title-1">
+                                            {{ education.schoolLocation }}
+                                        </div>
+                                    </div>
+                                    <div class="page-section-content">
+                                        <div class="page-section-content-title-2">
+                                            {{ education.degree }}
+                                        </div>
+                                        <div class="page-section-content-title-3">
+                                            {{ formatDate(education.startDate) }} -
+                                            {{ formatDate(education.endDate) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="page-section-list-group">
+                                        <!-- {{ education.jobDescription }} -->
+                                        <ul>
+                                            <li v-for="e in education.edDescription" :key="e.id">
+                                                {{ e }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certification -->
+                        <div class="page-section" v-if="resume.certificates.length">
+                            <div class="page-section-title">
+                                CERTIFICATIONS
+                                <div class="page-divider"></div>
+                                <draggable :list="resume.certificates" >
+                                    <div class="page-sub-section" v-for="cert in resume.certificates" :key="cert.id">
+                                        <div class="page-section-content">
+                                            <div class="page-section-content-title-1">
+                                                {{ cert.certName }}
+                                            </div>
+                                            <div class="page-section-content-title-1">
+                                                {{ formatDate(cert.startDate) }} -
+                                                {{ formatDate(cert.endDate) }}
+                                            </div>
+                                        </div>
+                                        <div class="page-section-content">
+                                            <div class="page-section-content-title-2">
+                                                <a style="text-decoration: none; color: black" :href="cert.link"
+                                                    target="_blank">
+                                                    {{ cert.link }}</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="page-section-list-group" v-if="cert.certDescription.length">
+                                            <!-- {{ education.jobDescription }} -->
+                                            <ul>
+                                                <li v-for="e in cert.certDescription" :key="e.id">
+                                                    {{ e }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </draggable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </el-row>
         </el-col>
     </el-row>
 </template>
@@ -96,7 +214,8 @@ import moment from 'moment'
 import EducationCard from '@/components/EducationCard.vue'
 import ExperienceCard from '@/components/ExperienceCard.vue'
 import CertificateCard from '@/components/CertificateCard.vue'
-import { ref } from 'vue'
+import { VueDraggableNext } from 'vue-draggable-next'
+
 
 export default {
     components: {
@@ -104,6 +223,7 @@ export default {
         ExperienceCard,
         EducationCard,
         CertificateCard,
+        draggable: VueDraggableNext,
     },
     data() {
         return {
@@ -140,12 +260,12 @@ export default {
             },
         }
     },
-    methods:{
+    methods: {
         formatDate(val) {
             return moment(val).format('MMMM YYYY')
         },
         addCertificates() {
-            const id = 1 
+            const id = this.resume.certificates.length + 1;
             this.resume.certificates.push({
                 id,
                 certName: 'VUE',
@@ -172,7 +292,7 @@ export default {
 
 
         addEducation() {
-            const id = 1 
+            const id = this.resume.educations.length + 1;
             this.resume.educations.push({
                 id,
                 schoolName: 'School',
@@ -198,7 +318,7 @@ export default {
             }
         },
         addExperience() {
-            const id = 1 
+            const id = this.resume.experiences.length + 1;
             this.resume.experiences.push({
                 id,
                 companyName: 'Company.',
@@ -224,10 +344,132 @@ export default {
             }
         },
     },
-    created(){
+    created() {
         this.addCertificates()
         this.addEducation()
         this.addExperience()
     }
 }
 </script>
+<style lang="css" scoped>
+.page-document {
+    font-family: Arial, sans-serif !important;
+    color: black;
+    background-color: white;
+
+    padding: 0;
+    box-sizing: border-box
+}
+
+.page-title {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.page-role-title {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.page-subtitle-1 {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.page-section {
+    width: 100%;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-sub-section {
+    margin-bottom: 0.5em;
+}
+
+.page-section-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-section-content-title-1 {
+    font-weight: bold;
+    font-size: 12px;
+
+    margin-bottom: 8px;
+}
+
+.page-section-content-title-2 {
+    font-weight: 400;
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+.page-section-content-title-3 {
+    font-weight: 400;
+    font-size: 12px;
+
+    margin-bottom: 8px;
+}
+
+.page-divider {
+    width: 100%;
+    background-color: black;
+    height: 1.33px;
+    margin-bottom: 8px;
+}
+
+.page-section-title {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin: 16px 0;
+}
+
+.page-summary-text {
+    padding: 0;
+    font-weight: 400;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.page-section-list-group ul {}
+
+.page-section-list-group ul,
+.page-section-list-group ul li {
+    font-weight: 500;
+    text-align: left;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.page-section-child {
+    line-break: normal;
+    word-break: break-all;
+    padding: 0 0;
+}
+
+.page-section-list-group {
+    line-break: normal;
+    word-break: break-all;
+    padding: 0 2.5em;
+}
+
+.page-list-section {}
+
+.page-regular-section {}
+
+.page-line-between-section {}
+
+.page-ref-section {}
+
+.page-social-section {}
+
+.page-portfolio-section {}</style>

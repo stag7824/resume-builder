@@ -5,6 +5,8 @@ import store from './store'
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 
 
 const app = createApp(App);
