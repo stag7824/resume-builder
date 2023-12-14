@@ -112,6 +112,9 @@
 </template>
 <script>
 import moment from 'moment'
+import {ref} from 'vue'
+
+const size = ref<'default' | 'large' | 'small'>('default')
 
 export default {
     props: [

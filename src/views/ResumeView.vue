@@ -97,11 +97,11 @@
         <el-col :span="12" :lg="12" :md="12" :sd="24" :xs="24">
             <el-row class="bg-grey-darken-2 pa-4 position-relative" :span="24" :lg="24" :md="24" :sd="24" :xs="24"
                 style="text-align: center;">
-                <div class="pa-10 bg-white">
-                    <div class="page-document" id="document_page">
+                <div class="pa-10 bg-white" style="width: 100%;"  >
+                    <div class="page-document" id="document_page" style="width: 100%; ">
                         <!-- Preview Starts from here -->
-                        <!-- Experiences -->
                         <draggable>
+                            <!-- Experiences -->
                             <div class="page-section" v-if="resume.experiences.length">
                                 <div class="page-section-title">
                                     EXPERIENCES
@@ -136,9 +136,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </draggable>
-                        <!-- Education -->
-                        <draggable>
+                            <!-- Education -->
                             <div class="page-section" v-if="resume.educations.length">
                                 <div class="page-section-title">
                                     EDUCATION
@@ -174,10 +172,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </draggable>
 
-                        <!-- Certification -->
-                        <div>
+                            <!-- Certification -->
                             <div class="page-section" v-if="resume.certificates.length">
                                 <div class="page-section-title">
                                     CERTIFICATIONS
@@ -185,12 +181,13 @@
                                     <draggable :list="resume.certificates">
                                         <div class="page-sub-section" v-for="cert in resume.certificates" :key="cert.id">
                                             <div class="page-section-content">
-                                                <div class="page-section-content-title-1">
-                                                    {{ cert.certName }}
-                                                </div>
-                                                <div class="page-section-content-title-1">
-                                                    {{ formatDate(cert.startDate) }} -
-                                                    {{ formatDate(cert.endDate) }}
+                                                <div class="cert-info">
+                                                    <div class="page-section-content-title-1">
+                                                        {{ cert.certName }}
+                                                    </div>
+                                                    <div class="page-section-content-title-1">
+                                                        {{ formatDate(cert.startDate) }} - {{ formatDate(cert.endDate) }}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="page-section-content">
@@ -200,9 +197,7 @@
                                                         {{ cert.link }}</a>
                                                 </div>
                                             </div>
-
                                             <div class="page-section-list-group" v-if="cert.certDescription.length">
-                                                <!-- {{ education.jobDescription }} -->
                                                 <ul>
                                                     <li v-for="e in cert.certDescription" :key="e.id">
                                                         {{ e }}
@@ -213,13 +208,14 @@
                                     </draggable>
                                 </div>
                             </div>
-                        </div>
+                        </draggable>
+
                     </div>
                 </div>
             </el-row>
         </el-col>
     </el-row>
-</template>
+</template>ß
 
 <script>
 import moment from 'moment'
@@ -282,8 +278,8 @@ export default {
                 id,
                 certName: 'VUE',
                 link: 'link.com.',
-                startDate: moment().format('DD-MM-YYYY'),
-                endDate: moment().format('DD-MM-YYYY'),
+                startDate: moment().format('L'),
+                endDate: moment().format('L'),
                 certDescription: ["Desc Here."],
                 certDesContent: '\u2022 Content.',
             })
@@ -313,8 +309,8 @@ export default {
                     "Velit ex ex aliquip eiusmod labore et est occaecat laboris cillum non laborum ullamco Lorem. Duis mollit et ea do elit et deserunt laborum fugiat occaecat consequat minim. In elit ullamco magna officia fugiat sunt cillum amet excepteur esse qui incididunt irure irure. Sunt non irure nulla anim ex minim dolore deserunt."
                 ],
                 edDesContent: '\u2022 Velit ex ex aliquip eiusmod labore et est occaecat laboris cillum non laborum ullamco Lorem. Duis mollit et ea do elit et deserunt laborum fugiat occaecat consequat minim. In elit ullamco magna officia fugiat sunt cillum amet excepteur esse qui incididunt irure irure. Sunt non irure nulla anim ex minim dolore deserunt.',
-                startDate: moment().format('DD-MM-YYYY'),
-                endDate: moment().format('DD-MM-YYYY'),
+                startDate: moment().format('L'),
+                endDate: moment().format('L'),
                 schoolLocation: 'Location',
             })
             this.edPanels = this.resume.educations.findIndex((e) => e.id === id)
@@ -337,8 +333,8 @@ export default {
                 jobTitle: 'Title of the Job.',
                 jobDescription: ["Job Desc"],
                 jobDesContent: '\u2022 Description.',
-                startDate: moment().format('DD-MM-YYYY'),
-                endDate: moment().format('DD-MM-YYYY'),
+                startDate: moment().format('L'),
+                endDate: moment().format('L'),
                 companyLocation: 'Location',
             })
             this.expPanels = this.resume.experiences.findIndex((e) => e.id === id)
@@ -358,7 +354,7 @@ export default {
     },
     created() {
         this.addCertificates()
-        this.addEducation()
+        // this.addEducation()
         this.addExperience()
     }
 }
@@ -472,4 +468,16 @@ export default {
     line-break: normal;
     word-break: break-all;
     padding: 0 2.5em;
-}</style>
+}
+
+.empty-state {
+    flex-grow: 1;
+    background-color: #e0e0e0;
+}
+
+.cert-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+</style>

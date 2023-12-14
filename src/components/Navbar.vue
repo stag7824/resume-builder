@@ -20,7 +20,6 @@
     emits: ['onExport'],
     data() {
       return {
-        isDialogOpened: false,
       }
     },
   };

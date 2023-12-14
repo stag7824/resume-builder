@@ -3,7 +3,7 @@
         <el-collapse-item>
             <!-- Title for the el-collapse -->
             <template #title>
-                <el-col class="pa-0 mx-auto">
+                <el-col class="pa-0 mx-auto" :lg="24" :md="24" :sd="24" :span="24">
                     <!-- <br> -->
                     <div class="text-caption">{{ currentData.certName }} <span style="color: grey">({{
                         formatDate(currentData.startDate) }} -
@@ -190,4 +190,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>
