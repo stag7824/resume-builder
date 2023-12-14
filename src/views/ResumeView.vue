@@ -5,91 +5,91 @@
         <el-col :span="12" :lg="12" :md="12" :sd="24" :xs="24">
             <el-collapse accordion>
                 <draggable>
-                <!-- Education -->
-                <el-collapse-item name="1">
-                    <template #title>
-                        &nbsp;Education &nbsp;<el-icon>
-                            <Reading />
-                        </el-icon>
-                    </template>
-                    <div>
-                        <br>
-                        <draggable :list="resume.sections[0].educations">
-                        <EducationCard v-for="education in resume.sections[0].educations" :key="education.id" :id="education.id"
-                            :school-name="education.schoolName" :degree="education.degree" :start-date="education.startDate"
-                            :end-date="education.endDate" :school-location="education.schoolLocation"
-                            :job-description="education.edDescription" :job-des-content="education.edDesContent"
-                            @on-remove="removeEducation" @on-update="updateEducation" v-bind="education">
-                        </EducationCard>
-                    </draggable>
-
-                    </div>
-                    <div style="
+                    <!-- Education -->
+                    <el-collapse-item name="1">
+                        <template #title>
+                            &nbsp;Education &nbsp;<el-icon>
+                                <Reading />
+                            </el-icon>
+                        </template>
+                        <div>
+                            <br>
+                            <draggable :list="resume.educations">
+                                <EducationCard v-for="education in resume.educations" :key="education.id" :id="education.id"
+                                    :school-name="education.schoolName" :degree="education.degree"
+                                    :start-date="education.startDate" :end-date="education.endDate"
+                                    :school-location="education.schoolLocation" :job-description="education.edDescription"
+                                    :job-des-content="education.edDesContent" @on-remove="removeEducation"
+                                    @on-update="updateEducation" v-bind="education">
+                                </EducationCard>
+                            </draggable>
+                        </div>
+                        <div style="
                         text-align: center;
                         /* padding-top: 3%; */">
-                        <el-button type="Default" @click="addEducation">
-                            <el-icon>
-                                <CirclePlus />
-                            </el-icon>&nbsp; Add More</el-button>
-                    </div>
-                </el-collapse-item>
+                            <el-button type="default" @click="addEducation">
+                                <el-icon>
+                                    <CirclePlus />
+                                </el-icon>&nbsp; Add More</el-button>
+                        </div>
+                    </el-collapse-item>
 
-                <!-- Certificate  -->
-                <el-collapse-item name="2">
-                    <template #title>
-                        &nbsp;Certificate &nbsp;<el-icon>
-                            <Promotion />
-                        </el-icon>
-                    </template>
-                    <div>
-                        <br>
-                        <draggable :list="resume.sections[2].certificates">
-                        <CertificateCard v-for="certificate in resume.sections[2].certificates" :id="certificate.id"
-                            :key="certificate.id" :cert-name="certificate.certName" :link="certificate.link"
-                            :start-date="certificate.startDate" :end-date="certificate.endDate"
-                            :cert-description="certificate.edDescription" :cert-des-content="certificate.edDesContent"
-                            @on-remove="removeCertificates" @on-update="updateCertificates" v-bind="certificate">
-                        </CertificateCard>
-                    </draggable>
-                    </div>
-                    <div style="
+                    <!-- Certificate  -->
+                    <el-collapse-item name="2">
+                        <template #title>
+                            &nbsp;Certificate &nbsp;<el-icon>
+                                <Promotion />
+                            </el-icon>
+                        </template>
+                        <div>
+                            <br>
+                            <draggable :list="resume.certificates">
+                                <CertificateCard v-for="certificate in resume.certificates" :id="certificate.id"
+                                    :key="certificate.id" :cert-name="certificate.certName" :link="certificate.link"
+                                    :start-date="certificate.startDate" :end-date="certificate.endDate"
+                                    :cert-description="certificate.edDescription"
+                                    :cert-des-content="certificate.edDesContent" @on-remove="removeCertificates"
+                                    @on-update="updateCertificates" v-bind="certificate">
+                                </CertificateCard>
+                            </draggable>
+                        </div>
+                        <div style="
                         text-align: center;
                         /* padding-top: 3%; */">
-                        <el-button type="Default" @click="addCertificates">
-                            <el-icon>
-                                <CirclePlus />
-                            </el-icon>&nbsp; Add Certificate</el-button>
-                    </div>
-                </el-collapse-item>
+                            <el-button type="default" @click="addCertificates">
+                                <el-icon>
+                                    <CirclePlus />
+                                </el-icon>&nbsp; Add Certificate</el-button>
+                        </div>
+                    </el-collapse-item>
 
-                <!-- Experience  -->
-                <el-collapse-item name="3">
-                    <template #title>
-                        &nbsp;Experience &nbsp;<el-icon>
-                            <StarFilled />
-                        </el-icon>
-                    </template>
-                    <div>
-                        <br>
-                        <ExperienceCard v-for="experience in resume.sections[1].experiences" :key="experience.id" :id="experience.id"
-                            :company-name="experience.companyName" :start-date="experience.startDate"
-                            :end-date="experience.endDate" :job-title="experience.jobTitle"
-                            :company-location="experience.companyLocation" :job-description="experience.jobDescription"
-                            :job-des-content="experience.jobDesContent" @on-remove="removeExperience"
-                            @on-update="updateExperience" v-bind="experience">
-                        </ExperienceCard>
-                    </div>
-                    <div style="
+                    <!-- Experience  -->
+                    <el-collapse-item name="3">
+                        <template #title>
+                            &nbsp;Experience &nbsp;<el-icon>
+                                <StarFilled />
+                            </el-icon>
+                        </template>
+                        <div>
+                            <br>
+                            <ExperienceCard v-for="experience in resume.experiences" :key="experience.id"
+                                :id="experience.id" :company-name="experience.companyName"
+                                :start-date="experience.startDate" :end-date="experience.endDate"
+                                :job-title="experience.jobTitle" :company-location="experience.companyLocation"
+                                :job-description="experience.jobDescription" :job-des-content="experience.jobDesContent"
+                                @on-remove="removeExperience" @on-update="updateExperience" v-bind="experience">
+                            </ExperienceCard>
+                        </div>
+                        <div style="
                         text-align: center;
                         /* padding-top: 3%; */">
-                        <el-button type="Default" @click="addExperience">
-                            <el-icon>
-                                <CirclePlus />
-                            </el-icon>&nbsp; Add Experience</el-button>
-                    </div>
-                </el-collapse-item>
-            
-            </draggable>
+                            <el-button type="default" @click="addExperience">
+                                <el-icon>
+                                    <CirclePlus />
+                                </el-icon>&nbsp; Add Experience</el-button>
+                        </div>
+                    </el-collapse-item>
+                </draggable>
             </el-collapse>
 
         </el-col>
@@ -100,116 +100,120 @@
                 <div class="pa-10 bg-white">
                     <div class="page-document" id="document_page">
                         <!-- Preview Starts from here -->
-                        <draggable>
                         <!-- Experiences -->
-                        <div class="page-section" v-if="resume.sections[1].experiences.length">
-                            <div class="page-section-title">
-                                EXPERIENCES
-                                <div class="page-divider"></div>
-                                <div class="page-sub-section" v-for="experience in resume.sections[1].experiences" :key="experience.id">
-                                    <div class="page-section-content">
-                                        <div class="page-section-content-title-1">
-                                            {{ experience.companyName }}
-                                        </div>
-                                        <div class="page-section-content-title-1">
-                                            {{ experience.companyLocation }}
-                                        </div>
-                                    </div>
-                                    <div class="page-section-content">
-                                        <div class="page-section-content-title-2">
-                                            {{ experience.jobTitle }}
-                                        </div>
-                                        <div class="page-section-content-title-3">
-                                            {{ formatDate(experience.startDate) }} -
-                                            {{ formatDate(experience.endDate) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="page-section-list-group">
-                                        <ul>
-                                            <li v-for="e in experience.jobDescription" :key="e.id">
-                                                {{ e }}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Education -->
-                        <div class="page-section" v-if="resume.sections[0].educations.length">
-                            <div class="page-section-title">
-                                EDUCATION
-                                <div class="page-divider"></div>
-                                <div class="page-sub-section" v-for="education in resume.sections[0].educations" :key="education.id">
-                                    <div class="page-section-content">
-                                        <div class="page-section-content-title-1">
-                                            {{ education.schoolName }}
-                                        </div>
-                                        <div class="page-section-content-title-1">
-                                            {{ education.schoolLocation }}
-                                        </div>
-                                    </div>
-                                    <div class="page-section-content">
-                                        <div class="page-section-content-title-2">
-                                            {{ education.degree }}
-                                        </div>
-                                        <div class="page-section-content-title-3">
-                                            {{ formatDate(education.startDate) }} -
-                                            {{ formatDate(education.endDate) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="page-section-list-group">
-                                        <!-- {{ education.jobDescription }} -->
-                                        <ul>
-                                            <li v-for="e in education.edDescription" :key="e.id">
-                                                {{ e }}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Certification -->
-                        <div>
-                        <div class="page-section" v-if="resume.sections[2].certificates.length">
-                            <div class="page-section-title">
-                                CERTIFICATIONS
-                                <div class="page-divider"></div>
-                                <draggable :list="resume.sections[2].certificates" >
-                                    <div class="page-sub-section" v-for="cert in resume.sections[2].certificates" :key="cert.id">
+                        <draggable>
+                            <div class="page-section" v-if="resume.experiences.length">
+                                <div class="page-section-title">
+                                    EXPERIENCES
+                                    <div class="page-divider"></div>
+                                    <div class="page-sub-section" v-for="experience in resume.experiences"
+                                        :key="experience.id">
                                         <div class="page-section-content">
                                             <div class="page-section-content-title-1">
-                                                {{ cert.certName }}
+                                                {{ experience.companyName }}
                                             </div>
                                             <div class="page-section-content-title-1">
-                                                {{ formatDate(cert.startDate) }} -
-                                                {{ formatDate(cert.endDate) }}
+                                                {{ experience.companyLocation }}
                                             </div>
                                         </div>
                                         <div class="page-section-content">
                                             <div class="page-section-content-title-2">
-                                                <a style="text-decoration: none; color: black" :href="cert.link"
-                                                    target="_blank">
-                                                    {{ cert.link }}</a>
+                                                {{ experience.jobTitle }}
+                                            </div>
+                                            <div class="page-section-content-title-3">
+                                                {{ formatDate(experience.startDate) }} -
+                                                {{ formatDate(experience.endDate) }}
                                             </div>
                                         </div>
 
-                                        <div class="page-section-list-group" v-if="cert.certDescription.length">
-                                            <!-- {{ education.jobDescription }} -->
+                                        <div class="page-section-list-group">
                                             <ul>
-                                                <li v-for="e in cert.certDescription" :key="e.id">
+                                                <li v-for="e in experience.jobDescription" :key="e.id">
                                                     {{ e }}
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
-                                </draggable>
+                                </div>
+                            </div>
+                        </draggable>
+                        <!-- Education -->
+                        <draggable>
+                            <div class="page-section" v-if="resume.educations.length">
+                                <div class="page-section-title">
+                                    EDUCATION
+                                    <div class="page-divider"></div>
+                                    <div class="page-sub-section" v-for="education in resume.educations"
+                                        :key="education.id">
+                                        <div class="page-section-content">
+                                            <div class="page-section-content-title-1">
+                                                {{ education.schoolName }}
+                                            </div>
+                                            <div class="page-section-content-title-1">
+                                                {{ education.schoolLocation }}
+                                            </div>
+                                        </div>
+                                        <div class="page-section-content">
+                                            <div class="page-section-content-title-2">
+                                                {{ education.degree }}
+                                            </div>
+                                            <div class="page-section-content-title-3">
+                                                {{ formatDate(education.startDate) }} -
+                                                {{ formatDate(education.endDate) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="page-section-list-group">
+                                            <!-- {{ education.jobDescription }} -->
+                                            <ul>
+                                                <li v-for="e in education.edDescription" :key="e.id">
+                                                    {{ e }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </draggable>
+
+                        <!-- Certification -->
+                        <div>
+                            <div class="page-section" v-if="resume.certificates.length">
+                                <div class="page-section-title">
+                                    CERTIFICATIONS
+                                    <div class="page-divider"></div>
+                                    <draggable :list="resume.certificates">
+                                        <div class="page-sub-section" v-for="cert in resume.certificates" :key="cert.id">
+                                            <div class="page-section-content">
+                                                <div class="page-section-content-title-1">
+                                                    {{ cert.certName }}
+                                                </div>
+                                                <div class="page-section-content-title-1">
+                                                    {{ formatDate(cert.startDate) }} -
+                                                    {{ formatDate(cert.endDate) }}
+                                                </div>
+                                            </div>
+                                            <div class="page-section-content">
+                                                <div class="page-section-content-title-2">
+                                                    <a style="text-decoration: none; color: black" :href="cert.link"
+                                                        target="_blank">
+                                                        {{ cert.link }}</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="page-section-list-group" v-if="cert.certDescription.length">
+                                                <!-- {{ education.jobDescription }} -->
+                                                <ul>
+                                                    <li v-for="e in cert.certDescription" :key="e.id">
+                                                        {{ e }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </draggable>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                    </draggable>
                     </div>
                 </div>
             </el-row>
@@ -240,13 +244,7 @@ export default {
             refPanels: 0,
             certPanels: 0,
             defaultPanel: 0,
-            
             resume: {
-                sections:[
-                {id:1, educations:  [] },   //0:  Education   [0]
-                {id:2, experiences: [] },   //1:  Experience  [1]
-                {id:3, certificates:[] },   //2:  Certificate [2]
-            ],
                 summary: '',
                 personalInfo: {
                     firstname: 'First Name',
@@ -263,9 +261,9 @@ export default {
                     dateOfBirth: '20-22-100',
                     linkedin: 'https://linkedin.com/in/name',
                 },
-                // educations: [],
-                // experiences: [],
-                // certificates: [],
+                educations: [],
+                experiences: [],
+                certificates: [],
                 skills: [],
                 languages: [],
                 socialLinks: [],
@@ -279,8 +277,8 @@ export default {
             return moment(val).format('MMMM YYYY')
         },
         addCertificates() {
-            const id = this.resume.sections[2].certificates.length + 1;
-            this.resume.sections[2].certificates.push({
+            const id = this.resume.certificates.length + 1;
+            this.resume.certificates.push({
                 id,
                 certName: 'VUE',
                 link: 'link.com.',
@@ -289,25 +287,25 @@ export default {
                 certDescription: ["Desc Here."],
                 certDesContent: '\u2022 Content.',
             })
-            this.certPanels = this.resume.sections[2].certificates.findIndex((e) => e.id === id)
+            this.certPanels = this.resume.certificates.findIndex((e) => e.id === id)
         },
         removeCertificates(id) {
-            const current = this.resume.sections[2].certificates.findIndex((e) => e.id === id)
-            this.resume.sections[2].certificates.splice(current, 1)
+            const current = this.resume.certificates.findIndex((e) => e.id === id)
+            this.resume.certificates.splice(current, 1)
         },
         updateCertificates(newData) {
-            const index = this.resume.sections[2].certificates.findIndex(
+            const index = this.resume.certificates.findIndex(
                 (e) => e.id === newData.id
             )
             if (index !== -1) {
-                this.resume.sections[2].certificates[index] = newData
+                this.resume.certificates[index] = newData
             }
         },
 
 
         addEducation() {
-            const id = this.resume.sections[0].educations.length + 1;
-            this.resume.sections[0].educations.push({
+            const id = this.resume.educations.length + 1;
+            this.resume.educations.push({
                 id,
                 schoolName: 'School',
                 degree: 'Degree or Subject',
@@ -319,21 +317,21 @@ export default {
                 endDate: moment().format('DD-MM-YYYY'),
                 schoolLocation: 'Location',
             })
-            this.edPanels = this.resume.sections[0].educations.findIndex((e) => e.id === id)
+            this.edPanels = this.resume.educations.findIndex((e) => e.id === id)
         },
         removeEducation(id) {
-            const current = this.resume.sections[0].educations.findIndex((e) => e.id === id)
-            this.resume.sections[0].educations.splice(current, 1)
+            const current = this.resume.educations.findIndex((e) => e.id === id)
+            this.resume.educations.splice(current, 1)
         },
         updateEducation(newData) {
-            const index = this.resume.sections[0].educations.findIndex((e) => e.id === newData.id)
+            const index = this.resume.educations.findIndex((e) => e.id === newData.id)
             if (index !== -1) {
-                this.resume.sections[0].educations[index] = newData
+                this.resume.educations[index] = newData
             }
         },
         addExperience() {
-            const id = this.resume.sections[1].experiences.length + 1;
-            this.resume.sections[1].experiences.push({
+            const id = this.resume.experiences.length + 1;
+            this.resume.experiences.push({
                 id,
                 companyName: 'Company.',
                 jobTitle: 'Title of the Job.',
@@ -343,18 +341,18 @@ export default {
                 endDate: moment().format('DD-MM-YYYY'),
                 companyLocation: 'Location',
             })
-            this.expPanels = this.resume.sections[1].experiences.findIndex((e) => e.id === id)
+            this.expPanels = this.resume.experiences.findIndex((e) => e.id === id)
         },
         removeExperience(id) {
-            const current = this.resume.sections[1].experiences.findIndex((e) => e.id === id)
-            this.resume.sections[1].experiences.splice(current, 1)
+            const current = this.resume.experiences.findIndex((e) => e.id === id)
+            this.resume.experiences.splice(current, 1)
         },
         updateExperience(newData) {
-            const index = this.resume.sections[1].experiences.findIndex(
+            const index = this.resume.experiences.findIndex(
                 (e) => e.id === newData.id
             )
             if (index !== -1) {
-                this.resume.sections[1].experiences[index] = newData
+                this.resume.experiences[index] = newData
             }
         },
     },
@@ -474,16 +472,4 @@ export default {
     line-break: normal;
     word-break: break-all;
     padding: 0 2.5em;
-}
-
-.page-list-section {}
-
-.page-regular-section {}
-
-.page-line-between-section {}
-
-.page-ref-section {}
-
-.page-social-section {}
-
-.page-portfolio-section {}</style>
+}</style>
