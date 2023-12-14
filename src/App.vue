@@ -9,6 +9,7 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import html2pdf from 'html2pdf.js'
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
   name: 'App',
@@ -34,10 +35,11 @@ export default {
       container.style.width = '100%'
       container.style.display = 'flex'
       container.appendChild(element.cloneNode(true))
-
+      const uuid = uuidv4();
+      console.log("uuid",uuid)
       const opt = {
         margin: 0.5,
-        filename: `${this.generateUniqueId}_resume.pdf`,
+        filename: uuid+'_resume.pdf',
         image: { type: 'jpeg', quality: 1 },
         html2canvas: {
           letterRendering: true,
