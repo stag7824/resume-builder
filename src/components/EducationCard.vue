@@ -17,7 +17,6 @@
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
                             <div style="text-align:center;">
-
                                 <label>School Name</label>
                             </div>
                         </el-col>
@@ -32,7 +31,6 @@
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
                             <div style="text-align:center;">
-
                                 <label>Degree</label>
                             </div>
                         </el-col>
@@ -127,13 +125,13 @@ export default {
         // 'schoolLocation',
         // 'edDescription',
         // 'edDesContent',
-        id: String,
+        id: Number,
         schoolName: String,
         degree: String,
         startDate: String,
         endDate: String,
         schoolLocation: String,
-        edDescription: String,
+        edDescription: Array,
         edDesContent: String,
     },
     emits: ['onRemove', 'onUpdate'],
@@ -156,6 +154,8 @@ export default {
 
     methods: {
         handleInput(event) {
+            // debugger
+            console.log("event",event);
             const bullet = '\u2022'
             const newLength = this.currentData.edDesContent.length
 
@@ -177,7 +177,8 @@ export default {
                 .replace(/• /g, '')
                 .replace(/\n/g, '||')
                 .split('||')
-
+            console.log("🚀 ~ file: EducationCard.vue:180 ~ handleInput ~ this.currentData:", this.currentData)
+            
             this.updateEducation()
             this.PREV_LENGTH = newLength
         },
@@ -186,7 +187,11 @@ export default {
             return match ? match[0] : ''
         },
         formatDate(val) {
-            return moment(val).format('MMMM YYYY')
+            try {
+                return moment(val).format('MMMM YYYY')
+            } catch (error) {
+                return error;
+            }
         },
         updateEducation() {
             // Emit an event to update the resume data in the parent component
