@@ -123,7 +123,6 @@ export default {
     emits: ['onRemove', 'onUpdate'],
     data() {
         return {
-            minLengthRule: [(v) => v.length >= 255 || 'Min 255 characters'],
             currentData: {
                 id: this.id,
                 companyName: this.companyName,

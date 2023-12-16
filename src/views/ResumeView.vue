@@ -72,13 +72,15 @@
                         </template>
                         <div>
                             <br>
-                            <ExperienceCard v-for="experience in resume.experiences" :key="experience.id"
-                                :id="experience.id" :company-name="experience.companyName"
-                                :start-date="experience.startDate" :end-date="experience.endDate"
-                                :job-title="experience.jobTitle" :company-location="experience.companyLocation"
-                                :job-description="experience.jobDescription" :job-des-content="experience.jobDesContent"
-                                @on-remove="removeExperience" @on-update="updateExperience" v-bind="experience">
-                            </ExperienceCard>
+                            <draggable :list="resume.experiences">
+                                <ExperienceCard v-for="experience in resume.experiences" :key="experience.id"
+                                    :id="experience.id" :company-name="experience.companyName"
+                                    :start-date="experience.startDate" :end-date="experience.endDate"
+                                    :job-title="experience.jobTitle" :company-location="experience.companyLocation"
+                                    :job-description="experience.jobDescription" :job-des-content="experience.jobDesContent"
+                                    @on-remove="removeExperience" @on-update="updateExperience" v-bind="experience">
+                                </ExperienceCard>
+                            </draggable>
                         </div>
                         <div style="
                         text-align: center;
@@ -97,7 +99,7 @@
         <el-col :span="12" :lg="12" :md="12" :sd="24" :xs="24">
             <el-row class="bg-grey-darken-2 pa-4 position-relative" :span="24" :lg="24" :md="24" :sd="24" :xs="24"
                 style="text-align: center;">
-                <div class="pa-10 bg-white" style="width: 100%;"  >
+                <div class="pa-10 bg-white" style="width: 100%;">
                     <div class="page-document" id="document_page" style="width: 100%; ">
                         <!-- Preview Starts from here -->
                         <draggable>
@@ -106,34 +108,36 @@
                                 <div class="page-section-title">
                                     EXPERIENCES
                                     <div class="page-divider"></div>
-                                    <div class="page-sub-section" v-for="experience in resume.experiences"
-                                        :key="experience.id">
-                                        <div class="page-section-content">
-                                            <div class="page-section-content-title-1">
-                                                {{ experience.companyName }}
+                                    <draggable :list="resume.experiences">
+                                        <div class="page-sub-section" v-for="experience in resume.experiences"
+                                            :key="experience.id">
+                                            <div class="page-section-content">
+                                                <div class="page-section-content-title-1">
+                                                    {{ experience.companyName }}
+                                                </div>
+                                                <div class="page-section-content-title-1">
+                                                    {{ experience.companyLocation }}
+                                                </div>
                                             </div>
-                                            <div class="page-section-content-title-1">
-                                                {{ experience.companyLocation }}
+                                            <div class="page-section-content">
+                                                <div class="page-section-content-title-2">
+                                                    {{ experience.jobTitle }}
+                                                </div>
+                                                <div class="page-section-content-title-3">
+                                                    {{ formatDate(experience.startDate) }} -
+                                                    {{ formatDate(experience.endDate) }}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="page-section-content">
-                                            <div class="page-section-content-title-2">
-                                                {{ experience.jobTitle }}
-                                            </div>
-                                            <div class="page-section-content-title-3">
-                                                {{ formatDate(experience.startDate) }} -
-                                                {{ formatDate(experience.endDate) }}
-                                            </div>
-                                        </div>
 
-                                        <div class="page-section-list-group">
-                                            <ul>
-                                                <li v-for="e in experience.jobDescription" :key="e.id">
-                                                    {{ e }}
-                                                </li>
-                                            </ul>
+                                            <div class="page-section-list-group">
+                                                <ul>
+                                                    <li v-for="e in experience.jobDescription" :key="e.id">
+                                                        {{ e }}
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </draggable>
                                 </div>
                             </div>
                             <!-- Education -->
@@ -141,35 +145,37 @@
                                 <div class="page-section-title">
                                     EDUCATION
                                     <div class="page-divider"></div>
-                                    <div class="page-sub-section" v-for="education in resume.educations"
-                                        :key="education.id">
-                                        <div class="page-section-content">
-                                            <div class="page-section-content-title-1">
-                                                {{ education.schoolName }}
+                                    <draggable :list="resume.educations">
+                                        <div class="page-sub-section" v-for="education in resume.educations"
+                                            :key="education.id">
+                                            <div class="page-section-content">
+                                                <div class="page-section-content-title-1">
+                                                    {{ education.schoolName }}
+                                                </div>
+                                                <div class="page-section-content-title-1">
+                                                    {{ education.schoolLocation }}
+                                                </div>
                                             </div>
-                                            <div class="page-section-content-title-1">
-                                                {{ education.schoolLocation }}
+                                            <div class="page-section-content">
+                                                <div class="page-section-content-title-2">
+                                                    {{ education.degree }}
+                                                </div>
+                                                <div class="page-section-content-title-3">
+                                                    {{ formatDate(education.startDate) }} -
+                                                    {{ formatDate(education.endDate) }}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="page-section-content">
-                                            <div class="page-section-content-title-2">
-                                                {{ education.degree }}
-                                            </div>
-                                            <div class="page-section-content-title-3">
-                                                {{ formatDate(education.startDate) }} -
-                                                {{ formatDate(education.endDate) }}
-                                            </div>
-                                        </div>
 
-                                        <div class="page-section-list-group">
-                                            <!-- {{ education.jobDescription }} -->
-                                            <ul>
-                                                <li v-for="e in education.edDescription" :key="e.id">
-                                                    {{ e }}
-                                                </li>
-                                            </ul>
+                                            <div class="page-section-list-group">
+                                                <!-- {{ education.jobDescription }} -->
+                                                <ul>
+                                                    <li v-for="e in education.edDescription" :key="e.id">
+                                                        {{ e }}
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </draggable>
                                 </div>
                             </div>
 

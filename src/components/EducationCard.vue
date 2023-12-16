@@ -118,20 +118,27 @@ import {ref} from 'vue'
 
 const size = ref<'default' | 'large' | 'small'>('default')
 export default {
-    props: [
-        'id',
-        'schoolName',
-        'degree',
-        'startDate',
-        'endDate',
-        'schoolLocation',
-        'edDescription',
-        'edDesContent',
-    ],
+    props: {
+        // 'id',
+        // 'schoolName',
+        // 'degree',
+        // 'startDate',
+        // 'endDate',
+        // 'schoolLocation',
+        // 'edDescription',
+        // 'edDesContent',
+        id: String,
+        schoolName: String,
+        degree: String,
+        startDate: String,
+        endDate: String,
+        schoolLocation: String,
+        edDescription: String,
+        edDesContent: String,
+    },
     emits: ['onRemove', 'onUpdate'],
     data() {
         return {
-            minLengthRule: [(v) => v.length >= 50 || 'Min 50 characters'],
             currentData: {
                 id: this.id,
                 schoolName: this.schoolName,

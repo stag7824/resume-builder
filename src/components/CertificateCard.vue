@@ -120,30 +120,27 @@ const size = ref < 'default' | 'large' | 'small' > ('large')
 const activeName = ref('1')
 
 export default {
-    props: [
-        'id',
-        'certName',
-        'link',
-        'startDate',
-        'endDate',
-        'certDescription',
-        'certDesContent',
-    ],
+    props: {
+        id: String,
+        certName: String,
+        link: String,
+        startDate: String,
+        endDate: String,
+        certDescription: String,
+        certDesContent: String,
+    },
     emits: ['onRemove', 'onUpdate'],
     data() {
         return {
-            minLengthRule: [(v) => v.length >= 50 || 'Min 50 characters'],
             currentData: {
                 id: this.id,
                 certName: this.certName,
                 startDate: this.startDate,
                 endDate: this.endDate,
                 link: this.link,
-
                 certDescription: this.certDescription,
                 certDesContent: this.certDesContent,
             },
-
             PREV_LENGTH: 0,
         }
     },
