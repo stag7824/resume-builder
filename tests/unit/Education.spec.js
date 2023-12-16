@@ -57,12 +57,12 @@ describe('EducationCard.vue', () => {
         console.log("\x1b[33m ____ALL VALUES : ", schoolName, startDate, endDate, degree, schoolLocation, "\x1b[0m");
     });
     // Additional tests can be written for handleInput method and other functionalities.
-    it('processes description Array correctly',async () => {
+    it('processes description Array correctly', async () => {
         // Simulate new line with bullet point
         const newData = 'Some content\nNew line with bullet';
         wrapper.vm.currentData.edDesContent = newData;
         wrapper.vm.handleInput({ key: 'Enter' });
-        expect(wrapper.vm.currentData.edDescription).toEqual(['Some content','New line with bullet']);
+        expect(wrapper.vm.currentData.edDescription).toEqual(['Some content', 'New line with bullet']);
         expect(wrapper.vm.currentData.edDescription).not.toContain('~~~'); // Verify placeholder replacement
         // Simulate first character with bullet
         // await wrapper.vm.$nextTick();
@@ -76,12 +76,12 @@ describe('EducationCard.vue', () => {
         const expectedFormat = 'October 2023';
         const formattedDate = wrapper.vm.formatDate(dateStr)//EducationCard.methods.formatDate(dateStr);
         expect(formattedDate).toBe(expectedFormat);
-      });
-      
-      it('should return an \'Invalid date\' string for an invalid date string', () => {
+    });
+
+    it('should return an \'Invalid date\' string for an invalid date string', () => {
         const invalidDateStr = 'abc';
         const formattedDate = EducationCard.methods.formatDate(invalidDateStr);
         expect(formattedDate).toBe('Invalid date');
-      });
+    });
 });
 

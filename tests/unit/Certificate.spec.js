@@ -27,6 +27,7 @@ describe('CertificateCard.vue', () => {
         certDesContent: currentData.certDesContent,
       }
     });
+    // 
   });
 
   it('renders certificate details correctly', () => {
