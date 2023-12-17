@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1702709558234" clover="3.2.0">
+  <project timestamp="1702709558234" name="All files">
+    <metrics statements="193" coveredstatements="171" conditionals="38" coveredconditionals="38" methods="111" coveredmethods="89" elements="342" coveredelements="298" complexity="0" loc="193" ncloc="193" packages="1" files="3" classes="3"/>
+    <file name="CertificateCard.vue" path="/Users/syedtalhaahmedgardazi/Desktop/Self Coding.nosync/Finalized/resume-builder/src/components/CertificateCard.vue">
+      <metrics statements="64" coveredstatements="57" conditionals="12" coveredconditionals="12" methods="36" coveredmethods="29"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="92" count="1" type="stmt"/>
+      <line num="94" count="1" type="stmt"/>
+      <line num="97" count="1" type="stmt"/>
+      <line num="98" count="1" type="stmt"/>
+      <line num="99" count="1" type="stmt"/>
+      <line num="102" count="1" type="stmt"/>
+      <line num="107" count="1" type="stmt"/>
+      <line num="112" count="1" type="stmt"/>
+      <line num="117" count="1" type="stmt"/>
+      <line num="122" count="1" type="stmt"/>
+      <line num="127" count="1" type="stmt"/>
+      <line num="128" count="1" type="stmt"/>
+      <line num="133" count="1" type="stmt"/>
+      <line num="139" count="4" type="stmt"/>
+      <line num="140" count="4" type="stmt"/>
+      <line num="141" count="4" type="stmt"/>
+      <line num="142" count="4" type="stmt"/>
+      <line num="143" count="4" type="stmt"/>
+      <line num="144" count="4" type="stmt"/>
+      <line num="145" count="4" type="stmt"/>
+      <line num="146" count="4" type="stmt"/>
+      <line num="147" count="4" type="stmt"/>
+      <line num="148" count="4" type="stmt"/>
+      <line num="151" count="4" type="stmt"/>
+      <line num="152" count="0" type="stmt"/>
+      <line num="159" count="0" type="stmt"/>
+      <line num="162" count="4" type="stmt"/>
+      <line num="168" count="4" type="stmt"/>
+      <line num="175" count="4" type="stmt"/>
+      <line num="179" count="4" type="stmt"/>
+      <line num="183" count="4" type="stmt"/>
+      <line num="191" count="4" type="stmt"/>
+      <line num="193" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="207" count="4" type="stmt"/>
+      <line num="211" count="4" type="stmt"/>
+      <line num="215" count="4" type="stmt"/>
+      <line num="223" count="4" type="stmt"/>
+      <line num="225" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="241" count="4" type="stmt"/>
+      <line num="248" count="4" type="stmt"/>
+      <line num="252" count="4" type="stmt"/>
+      <line num="256" count="4" type="stmt"/>
+      <line num="264" count="4" type="stmt"/>
+      <line num="266" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="282" count="4" type="stmt"/>
+      <line num="286" count="4" type="stmt"/>
+      <line num="290" count="4" type="stmt"/>
+      <line num="298" count="4" type="stmt"/>
+      <line num="300" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="318" count="4" type="stmt"/>
+      <line num="324" count="4" type="stmt"/>
+      <line num="328" count="4" type="stmt"/>
+      <line num="332" count="4" type="stmt"/>
+      <line num="340" count="4" type="stmt"/>
+      <line num="344" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="355" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="357" count="4" type="stmt"/>
+      <line num="358" count="4" type="stmt"/>
+      <line num="367" count="1" type="stmt"/>
+    </file>
+    <file name="EducationCard.vue" path="/Users/syedtalhaahmedgardazi/Desktop/Self Coding.nosync/Finalized/resume-builder/src/components/EducationCard.vue">
+      <metrics statements="66" coveredstatements="58" conditionals="14" coveredconditionals="14" methods="39" coveredmethods="31"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="102" count="1" type="stmt"/>
+      <line num="104" count="1" type="stmt"/>
+      <line num="107" count="1" type="stmt"/>
+      <line num="108" count="1" type="stmt"/>
+      <line num="109" count="1" type="stmt"/>
+      <line num="112" count="1" type="stmt"/>
+      <line num="117" count="1" type="stmt"/>
+      <line num="122" count="1" type="stmt"/>
+      <line num="127" count="1" type="stmt"/>
+      <line num="132" count="1" type="stmt"/>
+      <line num="137" count="1" type="stmt"/>
+      <line num="138" count="1" type="stmt"/>
+      <line num="143" count="1" type="stmt"/>
+      <line num="149" count="8" type="stmt"/>
+      <line num="150" count="8" type="stmt"/>
+      <line num="151" count="8" type="stmt"/>
+      <line num="152" count="8" type="stmt"/>
+      <line num="153" count="8" type="stmt"/>
+      <line num="154" count="8" type="stmt"/>
+      <line num="155" count="8" type="stmt"/>
+      <line num="156" count="8" type="stmt"/>
+      <line num="157" count="8" type="stmt"/>
+      <line num="158" count="8" type="stmt"/>
+      <line num="161" count="8" type="stmt"/>
+      <line num="162" count="0" type="stmt"/>
+      <line num="165" count="0" type="stmt"/>
+      <line num="168" count="8" type="stmt"/>
+      <line num="174" count="8" type="stmt"/>
+      <line num="181" count="8" type="stmt"/>
+      <line num="185" count="8" type="stmt"/>
+      <line num="189" count="8" type="stmt"/>
+      <line num="197" count="8" type="stmt"/>
+      <line num="199" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="213" count="8" type="stmt"/>
+      <line num="217" count="8" type="stmt"/>
+      <line num="221" count="8" type="stmt"/>
+      <line num="229" count="8" type="stmt"/>
+      <line num="231" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="247" count="8" type="stmt"/>
+      <line num="254" count="8" type="stmt"/>
+      <line num="258" count="8" type="stmt"/>
+      <line num="262" count="8" type="stmt"/>
+      <line num="270" count="8" type="stmt"/>
+      <line num="272" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="288" count="8" type="stmt"/>
+      <line num="292" count="8" type="stmt"/>
+      <line num="296" count="8" type="stmt"/>
+      <line num="304" count="8" type="stmt"/>
+      <line num="306" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="324" count="8" type="stmt"/>
+      <line num="330" count="8" type="stmt"/>
+      <line num="332" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="346" count="8" type="stmt"/>
+      <line num="352" count="8" type="stmt"/>
+      <line num="356" count="8" type="stmt"/>
+      <line num="360" count="8" type="stmt"/>
+      <line num="368" count="8" type="stmt"/>
+      <line num="372" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="383" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="385" count="8" type="stmt"/>
+      <line num="386" count="8" type="stmt"/>
+      <line num="395" count="1" type="stmt"/>
+    </file>
+    <file name="ExperienceCard.vue" path="/Users/syedtalhaahmedgardazi/Desktop/Self Coding.nosync/Finalized/resume-builder/src/components/ExperienceCard.vue">
+      <metrics statements="63" coveredstatements="56" conditionals="12" coveredconditionals="12" methods="36" coveredmethods="29"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="78" count="1" type="stmt"/>
+      <line num="80" count="1" type="stmt"/>
+      <line num="83" count="1" type="stmt"/>
+      <line num="84" count="1" type="stmt"/>
+      <line num="85" count="1" type="stmt"/>
+      <line num="88" count="1" type="stmt"/>
+      <line num="93" count="1" type="stmt"/>
+      <line num="98" count="1" type="stmt"/>
+      <line num="103" count="1" type="stmt"/>
+      <line num="108" count="1" type="stmt"/>
+      <line num="113" count="1" type="stmt"/>
+      <line num="114" count="1" type="stmt"/>
+      <line num="119" count="1" type="stmt"/>
+      <line num="125" count="4" type="stmt"/>
+      <line num="126" count="4" type="stmt"/>
+      <line num="127" count="4" type="stmt"/>
+      <line num="128" count="4" type="stmt"/>
+      <line num="129" count="4" type="stmt"/>
+      <line num="130" count="4" type="stmt"/>
+      <line num="131" count="4" type="stmt"/>
+      <line num="132" count="4" type="stmt"/>
+      <line num="133" count="4" type="stmt"/>
+      <line num="134" count="4" type="stmt"/>
+      <line num="137" count="4" type="stmt"/>
+      <line num="138" count="0" type="stmt"/>
+      <line num="141" count="0" type="stmt"/>
+      <line num="144" count="4" type="stmt"/>
+      <line num="150" count="4" type="stmt"/>
+      <line num="157" count="4" type="stmt"/>
+      <line num="161" count="4" type="stmt"/>
+      <line num="165" count="4" type="stmt"/>
+      <line num="173" count="4" type="stmt"/>
+      <line num="175" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="189" count="4" type="stmt"/>
+      <line num="193" count="4" type="stmt"/>
+      <line num="197" count="4" type="stmt"/>
+      <line num="205" count="4" type="stmt"/>
+      <line num="207" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="223" count="4" type="stmt"/>
+      <line num="230" count="4" type="stmt"/>
+      <line num="234" count="4" type="stmt"/>
+      <line num="238" count="4" type="stmt"/>
+      <line num="246" count="4" type="stmt"/>
+      <line num="248" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="264" count="4" type="stmt"/>
+      <line num="268" count="4" type="stmt"/>
+      <line num="272" count="4" type="stmt"/>
+      <line num="280" count="4" type="stmt"/>
+      <line num="282" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="300" count="4" type="stmt"/>
+      <line num="306" count="4" type="stmt"/>
+      <line num="310" count="4" type="stmt"/>
+      <line num="314" count="4" type="stmt"/>
+      <line num="322" count="4" type="stmt"/>
+      <line num="326" count="0" type="cond" truecount="2" falsecount="0"/>
+      <line num="337" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="339" count="4" type="stmt"/>
+      <line num="340" count="4" type="stmt"/>
+      <line num="349" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
