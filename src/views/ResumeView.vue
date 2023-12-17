@@ -91,6 +91,30 @@
                                 </el-icon>&nbsp; Add Experience</el-button>
                         </div>
                     </el-collapse-item>
+
+                    <!-- Reference  -->
+                    <el-collapse-item name="4">
+                        <template #title>
+                            &nbsp;Reference &nbsp;<el-icon><Avatar /></el-icon>
+                        </template>
+                        <div>
+                            <br>
+                            <draggable :list="resume.experiences">
+                                <ReferenceCard v-for="reference in resume.references" :key="reference.id" :id="reference.id"
+                                    :name="reference.name" :email="reference.email" :phone="reference.phone" :relation="reference.relation" :title="reference.title"
+                                    @on-remove="removeReferences" @on-update="updateReferences" v-bind="reference">
+                                </ReferenceCard>
+                            </draggable>
+                        </div>
+                        <div style="
+                        text-align: center;
+                        /* padding-top: 3%; */">
+                            <el-button type="default" @click="addReference">
+                                <el-icon>
+                                    <CirclePlus />
+                                </el-icon>&nbsp; Add reference</el-button>
+                        </div>
+                    </el-collapse-item>
                 </draggable>
             </el-collapse>
 
@@ -99,7 +123,7 @@
         <el-col :span="12" :lg="12" :md="12" :sd="24" :xs="24">
             <el-row class="bg-grey-darken-2 pa-4 position-relative" :span="24" :lg="24" :md="24" :sd="24" :xs="24"
                 style="text-align: center;">
-                <div class="pa-10 bg-white" style="width: 100%;">
+                <div class="pa-10 bg-white" style="width: 100%;padding: 1%;">
                     <div class="page-document" id="document_page" style="width: 100%; ">
                         <!-- Preview Starts from here -->
                         <draggable>
@@ -214,6 +238,42 @@
                                     </draggable>
                                 </div>
                             </div>
+                            <!-- References -->
+                <div class="page-section" v-if="resume.references.length">
+                  <div class="page-section-title">
+                    REFERENCES
+                    <div class="page-divider"></div>
+                    <draggable :list="resume.references">
+                    <div class="page-sub-section" v-for="ref in resume.references" :key="ref.id">
+                      <div class="page-section-content">
+                        <div class="page-section-content-title-1">
+                          {{ ref.name }}
+
+                            <span v-if="ref.employer && ref.title"> {{
+                            '('+ ref.title + ' - ' + ref.employer + ')'
+                          }}</span>                
+                            <span v-else-if="ref.title">{{
+                            '(' + ref.title + ')'
+                          }}</span>  
+                          <span v-else-if="ref.employer">{{
+                            '(' + ref.employer + ')'
+                          }}</span>
+                        </div>
+                      </div>
+                      <div class="page-section-content">
+                        <div class="page-section-content-title-2">
+                          <a style="text-decoration: none; " v-if="ref.email" :href="'mailto:' + ref.email"
+                            target="_blank">
+                            {{ ref.email }}</a>,
+                          <a style="text-decoration: none; color: black" v-if="ref.phone" :href="'tel:' + ref.phone"
+                            target="_blank">
+                            {{ ref.phone }}</a>
+                        </div>
+                      </div>
+                    </div>
+                </draggable>
+                  </div>
+                </div>
                         </draggable>
 
                     </div>
@@ -229,7 +289,7 @@ import EducationCard from '@/components/EducationCard.vue'
 import ExperienceCard from '@/components/ExperienceCard.vue'
 import CertificateCard from '@/components/CertificateCard.vue'
 import { VueDraggableNext } from 'vue-draggable-next'
-
+import ReferenceCard from '@/components/ReferenceCard.vue'
 
 export default {
     components: {
@@ -238,6 +298,7 @@ export default {
         EducationCard,
         CertificateCard,
         draggable: VueDraggableNext,
+        ReferenceCard,
     },
     data() {
         return {
@@ -357,11 +418,35 @@ export default {
                 this.resume.experiences[index] = newData
             }
         },
+
+        // Update Reference
+        addReference() {
+            const id = this.resume.references.length + 1;
+            this.resume.references.push({
+                id,
+                name: 'Fullname',
+                employer: 'Employer',
+                email: 'referererHere@referer.com',
+                phone: '+12435668998',
+            })
+            this.refPanels = this.resume.references.findIndex((e) => e.id === id)
+        },
+        removeReferences(id) {
+            const current = this.resume.references.findIndex((e) => e.id === id)
+            this.resume.references.splice(current, 1)
+        },
+        updateReferences(newData) {
+            const index = this.resume.references.findIndex((e) => e.id === newData.id)
+            if (index !== -1) {
+                this.resume.references[index] = newData
+            }
+        },
     },
     created() {
         this.addCertificates()
-        // this.addEducation()
+        this.addEducation()
         this.addExperience()
+        this.addReference()
     }
 }
 </script>
