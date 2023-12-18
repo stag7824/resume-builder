@@ -23,14 +23,14 @@
                                 </PersonalInfoCard>
                             </draggable>
                         </div>
-                        <div style="
+                        <!-- <div style="
                         text-align: center;
                         /* padding-top: 3%; */">
                             <el-button type="default" @click="addEducation">
                                 <el-icon>
                                     <CirclePlus />
                                 </el-icon>&nbsp; Add More</el-button>
-                        </div>
+                        </div> -->
                     </el-collapse-item>
                     <!-- Education -->
                     <el-collapse-item name="1">

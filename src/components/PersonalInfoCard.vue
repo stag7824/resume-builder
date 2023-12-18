@@ -110,7 +110,7 @@
                 <!-- For el-textarea, replace v-textarea -->
 
             </el-row>
-            <br>
+            <!-- <br>
 
             <div style="text-align: center;">
                 <el-button type="danger" @click="$emit('onRemove', id)">
@@ -119,7 +119,7 @@
                     </el-icon>
                     Remove
                 </el-button>
-            </div>
+            </div> -->
         <!-- </el-collapse-item> -->
     <!-- </el-collapse> -->
 </template>
