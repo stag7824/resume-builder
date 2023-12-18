@@ -5,6 +5,33 @@
         <el-col :span="12" :lg="12" :md="12" :sd="24" :xs="24">
             <el-collapse accordion>
                 <draggable>
+                     <!-- Personal Info -->
+                     <el-collapse-item name="0">
+                        <template #title>
+                            &nbsp;Personal Info &nbsp;<el-icon>
+                                <user />
+                            </el-icon>
+                        </template>
+                        <div>
+                            <br>
+                            <draggable>
+                                <PersonalInfoCard :key="resume.personalInfo.phone" :id="resume.personalInfo.phone"
+                                    :first-name="resume.personalInfo.firstname" :last-name="resume.personalInfo.lastname"
+                                    :email="resume.personalInfo.email" :phone="resume.personalInfo.phone"
+                                    :job-title="resume.personalInfo.jobTitle" :nationality="resume.personalInfo.nationality"
+                                    v-bind="resume.personalInfo"  @on-update="updatePersonalInfo">
+                                </PersonalInfoCard>
+                            </draggable>
+                        </div>
+                        <div style="
+                        text-align: center;
+                        /* padding-top: 3%; */">
+                            <el-button type="default" @click="addEducation">
+                                <el-icon>
+                                    <CirclePlus />
+                                </el-icon>&nbsp; Add More</el-button>
+                        </div>
+                    </el-collapse-item>
                     <!-- Education -->
                     <el-collapse-item name="1">
                         <template #title>
@@ -95,14 +122,17 @@
                     <!-- Reference  -->
                     <el-collapse-item name="4">
                         <template #title>
-                            &nbsp;Reference &nbsp;<el-icon><Avatar /></el-icon>
+                            &nbsp;Reference &nbsp;<el-icon>
+                                <Avatar />
+                            </el-icon>
                         </template>
                         <div>
                             <br>
                             <draggable :list="resume.experiences">
                                 <ReferenceCard v-for="reference in resume.references" :key="reference.id" :id="reference.id"
-                                    :name="reference.name" :email="reference.email" :phone="reference.phone" :relation="reference.relation" :title="reference.title"
-                                    @on-remove="removeReferences" @on-update="updateReferences" v-bind="reference">
+                                    :name="reference.name" :email="reference.email" :phone="reference.phone"
+                                    :relation="reference.relation" :title="reference.title" @on-remove="removeReferences"
+                                    @on-update="updateReferences" v-bind="reference">
                                 </ReferenceCard>
                             </draggable>
                         </div>
@@ -126,6 +156,30 @@
                 <div class="pa-10 bg-white" style="width: 100%;padding: 1%;">
                     <div class="page-document" id="document_page" style="width: 100%; ">
                         <!-- Preview Starts from here -->
+
+                        <!-- Personal Info -->
+                        <div class="page-title">
+                        {{
+                            resume.personalInfo.firstname +
+                            ' ' +
+                            resume.personalInfo.lastname
+                        }}
+                        </div>
+                        <div class="page-role-title">
+                        {{ resume.personalInfo.jobTitle }}
+                        </div>
+                        <div class="page-subtitle-1">
+                        <a style="text-decoration: none; color: black" :href="'mailto:' + resume.personalInfo.email">{{
+                            resume.personalInfo.email }}</a>
+                        |
+                        <a style="text-decoration: none; color: black" :href="'tel:' + resume.personalInfo.phone">{{
+                            resume.personalInfo.phone }}</a>
+                        </div>
+                        <div class="page-subtitle-1" v-if="resume.personalInfo.nationality">
+                        {{ resume.personalInfo.nationality }}
+                        </div>
+
+
                         <draggable>
                             <!-- Experiences -->
                             <div class="page-section" v-if="resume.experiences.length">
@@ -239,41 +293,46 @@
                                 </div>
                             </div>
                             <!-- References -->
-                <div class="page-section" v-if="resume.references.length">
-                  <div class="page-section-title">
-                    REFERENCES
-                    <div class="page-divider"></div>
-                    <draggable :list="resume.references">
-                    <div class="page-sub-section" v-for="ref in resume.references" :key="ref.id">
-                      <div class="page-section-content">
-                        <div class="page-section-content-title-1">
-                          {{ ref.name }}
+                            <div class="page-section" v-if="resume.references.length">
+                                <div class="page-section-title">
+                                    REFERENCES
+                                    <div class="page-divider"></div>
+                                    <draggable :list="resume.references">
+                                        <div class="page-sub-section" v-for="ref in resume.references" :key="ref.id">
+                                            <div class="page-section-content">
+                                                <div class="page-section-content-title-1">
+                                                    {{ ref.name }}
 
-                            <span v-if="ref.employer && ref.title"> {{
-                            '('+ ref.title + ' - ' + ref.employer + ')'
-                          }}</span>                
-                            <span v-else-if="ref.title">{{
-                            '(' + ref.title + ')'
-                          }}</span>  
-                          <span v-else-if="ref.employer">{{
-                            '(' + ref.employer + ')'
-                          }}</span>
-                        </div>
-                      </div>
-                      <div class="page-section-content">
-                        <div class="page-section-content-title-2">
-                          <a style="text-decoration: none; " v-if="ref.email" :href="'mailto:' + ref.email"
-                            target="_blank">
-                            {{ ref.email }}</a>,
-                          <a style="text-decoration: none; color: black" v-if="ref.phone" :href="'tel:' + ref.phone"
-                            target="_blank">
-                            {{ ref.phone }}</a>
-                        </div>
-                      </div>
-                    </div>
-                </draggable>
-                  </div>
-                </div>
+                                                    <span v-if="ref.employer && ref.title"> {{
+                                                        '(' + ref.title + ' - ' + ref.employer + ')'
+                                                    }}</span>
+                                                    <span v-else-if="ref.title">{{
+                                                        '(' + ref.title + ')'
+                                                    }}</span>
+                                                    <span v-else-if="ref.employer">{{
+                                                        '(' + ref.employer + ')'
+                                                    }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="page-section-content">
+                                                <div class="page-section-content-title-2">
+                                                    <a style="text-decoration: none; " v-if="ref.email"
+                                                        :href="'mailto:' + ref.email" target="_blank">
+                                                        {{ ref.email }}</a>,
+                                                    <a style="text-decoration: none; color: black" v-if="ref.phone"
+                                                        :href="'tel:' + ref.phone" target="_blank">
+                                                        {{ ref.phone }}</a>
+                                                </div>
+
+                                                <div class="page-section-content-title-2" v-if="ref.relation">
+                                                    {{ ref.relation }}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </draggable>
+                                </div>
+                            </div>
                         </draggable>
 
                     </div>
@@ -290,6 +349,7 @@ import ExperienceCard from '@/components/ExperienceCard.vue'
 import CertificateCard from '@/components/CertificateCard.vue'
 import { VueDraggableNext } from 'vue-draggable-next'
 import ReferenceCard from '@/components/ReferenceCard.vue'
+import PersonalInfoCard from '@/components/PersonalInfoCard.vue'
 
 export default {
     components: {
@@ -299,6 +359,7 @@ export default {
         CertificateCard,
         draggable: VueDraggableNext,
         ReferenceCard,
+        PersonalInfoCard,
     },
     data() {
         return {
@@ -311,18 +372,16 @@ export default {
                 summary: '',
                 personalInfo: {
                     firstname: 'First Name',
-                    middlename: '',
                     lastname: 'Last Name',
                     email: 'user@example.com',
                     phone: '+66123456789',
-                    jobTitle: 'Manager',
-                    nationality: '',
-                    address: '123,Home',
-                    country: 'Country',
-                    city: 'City',
-                    postalCode: '10110',
-                    dateOfBirth: '20-22-100',
-                    linkedin: 'https://linkedin.com/in/name',
+                    // jobTitle: 'Manager',
+                    // nationality: '',
+                    // address: '123,Home',
+                    // country: 'Country',
+                    // city: 'City',
+                    // postalCode: '10110',
+                    // linkedin: 'https://linkedin.com/in/name',
                 },
                 educations: [],
                 experiences: [],
@@ -338,6 +397,14 @@ export default {
     methods: {
         formatDate(val) {
             return moment(val).format('MMMM YYYY')
+        },
+        updatePersonalInfo(newData) {
+            // debugger
+            console.log("🚀 ~ file: ResumeView.vue:405 ~ updatePersonalInfo ~ newData:", newData)
+            console.log("🚀 ~ file: ResumeView.vue:406 ~ updatePersonalInfo ~ this.resume.personalInfo:", this.resume.personalInfo)
+                this.resume.personalInfo = newData
+                console.log("🚀 ~ file: ResumeView.vue:408 ~ updatePersonalInfo ~ this.resume.personalInfo:", this.resume.personalInfo)
+                console.log("🚀 ~ file: ResumeView.vue:409 ~ updatePersonalInfo ~ newData:", newData)
         },
         addCertificates() {
             const id = this.resume.certificates.length + 1;
@@ -428,6 +495,7 @@ export default {
                 employer: 'Employer',
                 email: 'referererHere@referer.com',
                 phone: '+12435668998',
+                relation: "Manager"
             })
             this.refPanels = this.resume.references.findIndex((e) => e.id === id)
         },
@@ -570,5 +638,4 @@ export default {
     display: flex;
     justify-content: space-between;
     width: 100%;
-}
-</style>
+}</style>
