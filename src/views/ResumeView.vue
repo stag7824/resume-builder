@@ -15,7 +15,7 @@
                         <div>
                             <br>
                             <draggable>
-                                <PersonalInfoCard :key="resume.personalInfo.phone" :id="resume.personalInfo.phone"
+                                <PersonalInfoCard 
                                     :first-name="resume.personalInfo.firstname" :last-name="resume.personalInfo.lastname"
                                     :email="resume.personalInfo.email" :phone="resume.personalInfo.phone"
                                     :job-title="resume.personalInfo.jobTitle" :nationality="resume.personalInfo.nationality"
@@ -53,7 +53,7 @@
                         </div>
                         <div style="
                         text-align: center;
-                        /* padding-top: 3%; */">
+                        /* padding-top: 1; */">
                             <el-button type="default" @click="addEducation">
                                 <el-icon>
                                     <CirclePlus />
