@@ -11,6 +11,7 @@ import Navbar from '@/components/Navbar.vue';
 import html2pdf from 'html2pdf.js'
 import { v4 as uuidv4 } from 'uuid';
 
+
 export default {
   name: 'App',
   components: {
@@ -36,10 +37,10 @@ export default {
       container.style.display = 'flex'
       container.appendChild(element.cloneNode(true))
       const uuid = uuidv4();
-      console.log("uuid",uuid)
+      console.log("uuid", uuid)
       const opt = {
         margin: 0.5,
-        filename: uuid+'_resume.pdf',
+        filename: uuid + '_resume.pdf',
         image: { type: 'jpeg', quality: 1 },
         html2canvas: {
           letterRendering: true,
@@ -53,55 +54,21 @@ export default {
 
       html2pdf().from(container).set(opt).save()
     },
-    exportWord(){
-      
-      //  var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
-      //       "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-      //       "xmlns='http://www.w3.org/TR/REC-html40'>"+
-      //       "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-      //  var footer = "</body></html>";
-      //  var sourceHTML = header+document.getElementById("document_page").innerHTML+footer;;
-      //  var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-      //  var fileDownload = document.createElement("a");
-      //  document.body.appendChild(fileDownload);
-      //  fileDownload.href = source;
-      //  const uuid = uuidv4();
-      //  fileDownload.download = uuid+'_Resume.doc';
-      //  fileDownload.click();
-      //  document.body.removeChild(fileDownload);
-      const element = document.getElementById('document_page');
-  const container = document.createElement('div');
-  container.style.width = '100%';
-  container.style.display = 'flex';
-  container.appendChild(element.cloneNode(true));
-
-  const uuid = uuidv4();
-  console.log("uuid", uuid);
-
-  const options = {
-    styleMap: (htmlElement) => {
-      // Extract and apply styles dynamically based on HTML structure
-      const styles = getComputedStyle(htmlElement);
-      const styleString = Object.keys(styles)
-        .map(key => `${key}:${styles[key]}`)
-        .join(';');
-      return `p[style-name='${styleString}'] => p:fresh`;
-    },
-  };
-
-  mammoth.extractRawText({ element: container }, options)
-    .then(result => {
-      const convertedHtml = result.value;
-      const blob = new Blob([`<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>${convertedHtml}</body></html>`], { type: 'text/html' });
-
-      const file = new File([blob], `${uuid}_resume.docx`, { type: 'application/msword' });
-
-      saveAs(file);
-    })
-    .catch(error => {
-      console.error("Error converting to Word document", error);
-    });
-
+    exportWord() {
+      var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+        "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+        "xmlns='http://www.w3.org/TR/REC-html40'>" +
+        "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+      var footer = "</body></html>";
+      var sourceHTML = header + document.getElementById("document_page").innerHTML + footer;;
+      var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+      var fileDownload = document.createElement("a");
+      document.body.appendChild(fileDownload);
+      fileDownload.href = source;
+      const uuid = uuidv4();
+      fileDownload.download = uuid + '_Resume.doc';
+      fileDownload.click();
+      document.body.removeChild(fileDownload);
     }
   }
 }
