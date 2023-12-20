@@ -13,7 +13,7 @@
 
           <el-row class="centered-text" style="max-width: 300px; gap: 8px;">
             <!-- Buttons Section -->
-            <el-button type="primary" size="large" block icon="el-icon-edit" @click="goToEditResume">
+            <el-button type="primary" size="large"  @click="goToEditResume">
               New Resume
             </el-button>
           </el-row>
