@@ -1,18 +1,12 @@
 <template>
 <header>
-  <!-- <nav :class="{ navShadow: $route.name === 'edit.resume' }"> -->
-    <nav class="">
+  <nav :class="{ navShadow: $route.name === 'edit.resume' }">
     <div id="brand">
-      <div id="logo"> <img id="logo" src="@/assets/logo.png" alt="CV Designer"></div>
+      <div id="logo"> <img id="logo" src="@/assets/logo.png" alt="CV Designer" @click="redirectIfEditResume"></div>
       <div id="word-mark">&nbsp;CV Designer</div>
     </div>
     <div id="menu">
-        <!-- <div id="menu-icon"> -->
-      <!-- <ul v-if="$route.name == 'edit.resume'"> -->
-        <ul>
-        <li><a href="#section00"></a></li>
-        <li style="color: #fff;"><a href="#section01"> Download PDF</a></li>
-      </ul>
+      <el-button v-if="$route.name == 'edit.resume'" @click="$emit('onExport')" type="success">Download PDF</el-button>
     </div>
   </nav>
 </header>
@@ -26,6 +20,13 @@
       return {
       }
     },
+    methods:{
+      redirectIfEditResume() {
+      if (this.$route.name === 'edit.resume') {
+        this.$router.push({ name: 'home' });
+      } 
+    }
+    }
   };
   </script>
   
@@ -99,7 +100,7 @@ ul {
   cursor: pointer;
 }
 
-#word-mark {
+/* #word-mark {
   width: 120px;
   height: 20px;
   background: #fff;
@@ -107,6 +108,26 @@ ul {
   margin-left: 20px;
   opacity: 1;
   transition: all 0.3s;
+} */
+#word-mark {
+  width: 120px;
+  height: 20px;
+  background: #fff; /* Adjust background color if needed */
+  border-radius: 90px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif; /* Modern, clean font */
+  font-weight: 600; /* Slightly bolder weight for emphasis */
+  color: #46b2f0; /* Blue color to match navigation bar */
+  transition: all 0.3s ease-in-out;
+}
+
+#word-mark:hover {
+  background: #f8f9fa; /* Light gray background on hover */
+  color: #3498db; /* Slightly darker blue on hover */
+  cursor: pointer; /* Indicate interactivity */
 }
 
 
@@ -121,11 +142,16 @@ li {
   margin-left: 20px;
 }
 li a {
-  width: 80px;
+  width: 120px;
   height: 20px;
-  background: #fff;
+  /* FIXME */
+  background: #ffffff;
   display: block;
-  border-radius: 90px;
+  /* margin-right: 25px; */
+  /* padding: 7px 15px; */
+  border-radius: 3px; 
+  font-weight: bold;
+  /* border-radius: 90px; */
 }
 
 #menu-toggle {
