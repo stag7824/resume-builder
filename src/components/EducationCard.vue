@@ -5,15 +5,18 @@
             <template #title>
                 <el-col class="pa-0 mx-auto">
                     <!-- <br> -->
-                    <div class="text-caption">{{ currentData.schoolName }} <span style="color: grey">({{
-                        formatDate(currentData.startDate) }} -
-                            {{ formatDate(currentData.endDate) }})</span></div>
+                    <div class="card-header">
+                        <h5 class="card-title text-center">
+                            {{ currentData.schoolName }} (<span style="color: grey">{{ formatDate(currentData.startDate) }}
+                                - {{ formatDate(currentData.endDate) }}</span>)
+                        </h5>
+                    </div>
                 </el-col>
             </template>
             <!-- School Name and Degree -->
-            <el-row :lg="24" :md="24" :sd="24" :xs="24">
+            <!-- <el-row :lg="24" :md="24" :sd="24" :xs="24">
                 <el-col :span="12" :lg="12" :xs="24" :sm="12" :md="12">
-                    <!-- Title -->
+                    Title
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
                             <div style="text-align:center;">
@@ -26,7 +29,7 @@
                             @input="updateEducation"></el-input>
                     </el-row>
                 </el-col>
-                <!-- Degree -->
+                Degree
                 <el-col :span="12" :xs="24" :sm="12" :md="12">
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
@@ -40,11 +43,8 @@
                             @input="updateEducation"></el-input>
                     </el-row>
                 </el-col>
-                <!-- For el-textarea, replace v-textarea -->
             </el-row>
-            <!-- Start and End -->
             <el-row :lg="24" :md="24" :sd="24" :xs="24">
-                <!-- Start Date -->
                 <el-col :span="12" :lg="12" :xs="24" :sm="12" :md="12">
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
@@ -58,7 +58,6 @@
                             clearable @change="updateEducation" />
                     </el-row>
                 </el-col>
-                <!-- End Date -->
                 <el-col :span="12" :xs="24" :sm="12" :md="12">
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
@@ -72,8 +71,6 @@
                             clearable @change="updateEducation" />
                     </el-row>
                 </el-col>
-                <!-- For el-textarea, replace v-textarea -->
-                <!-- Location -->
             </el-row>
             <br>
             <el-row :lg="24" :md="24" :sd="24" :xs="24">
@@ -83,7 +80,6 @@
                 </el-col>
             </el-row>
             <el-row :lg="24" :md="24" :sd="24" :xs="24">
-                <!-- School Description -->
                 <el-col :lg="24" :xs="24" :sm="24" :md="24">
                     <el-row :lg="24" :md="24">
                         <el-col :lg="24" :md="24">
@@ -98,33 +94,66 @@
                             @input="handleInput"></el-input>
                     </el-row>
                 </el-col>
-            </el-row>
-            <div style="text-align: center;">
-                <el-button type="danger" @click="$emit('onRemove', id)">
-                    <el-icon>
-                        <Delete />
-                    </el-icon>
-                    Remove
-                </el-button>
+            </el-row> -->
+            <!-- Test -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>School Name:</label>
+                        <input v-model="currentData.schoolName" type="text" class="form-control" placeholder="School Name"
+                            clearable @input="updateEducation">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Degree:</label>
+                        <input v-model="currentData.degree" type="text" class="form-control" placeholder="Degree" clearable
+                            @input="updateEducation">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Start Date:</label>
+                        <el-date-picker v-model="currentData.startDate" type="date" placeholder="Start Date" :size="large"
+                            clearable @change="updateEducation" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label>End Date:</label>
+                        <el-date-picker v-model="currentData.endDate" type="date" placeholder="End Date" :size="size"
+                            clearable @change="updateEducation" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Location:</label>
+                        <input v-model="currentData.schoolLocation" type="text" class="form-control" placeholder="Location"
+                            clearable @input="updateEducation">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Description:</label>
+                        <el-input type="textarea" :rows="10" v-model="currentData.edDesContent" placeholder="Description"
+                            @input="handleInput"></el-input>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Remove Button -->
+            <div class="card-footer" style="text-align: center;">
+                <button type="button" class="btn btn-danger" @click="$emit('onRemove', id)">
+                    <i class="bi bi-trash"></i> Remove
+                </button>
             </div>
         </el-collapse-item>
     </el-collapse>
 </template>
 <script>
 import moment from 'moment'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-const size = ref<'default' | 'large' | 'small'>('default')
+const size = ref < 'default' | 'large' | 'small' > ('default')
 export default {
     props: {
-        // 'id',
-        // 'schoolName',
-        // 'degree',
-        // 'startDate',
-        // 'endDate',
-        // 'schoolLocation',
-        // 'edDescription',
-        // 'edDesContent',
         id: Number,
         schoolName: String,
         degree: String,
@@ -155,7 +184,7 @@ export default {
     methods: {
         handleInput(event) {
             // debugger
-            console.log("event",event);
+            console.log("event", event);
             const bullet = '\u2022'
             const newLength = this.currentData.edDesContent.length
 
@@ -178,7 +207,7 @@ export default {
                 .replace(/\n/g, '||')
                 .split('||')
             console.log("🚀 ~ file: EducationCard.vue:180 ~ handleInput ~ this.currentData:", this.currentData)
-            
+
             this.updateEducation()
             this.PREV_LENGTH = newLength
         },
