@@ -1,5 +1,5 @@
 <template>
-<header>
+<header :class="{ headerEdit: $route.name === 'edit.resume' }">
   <nav :class="{ navShadow: $route.name === 'edit.resume' }">
     <div id="brand">
       <div id="logo"> <img id="logo" src="@/assets/logo.png" alt="CV Designer" @click="redirectIfEditResume"></div>
@@ -56,6 +56,20 @@ body {
 /*** Centering Hack ***/
 /*** Header Styles ***/
 header {
+  width: 100vw;
+  height: 20vh;
+  background: #5661f2;
+  display: flex;
+}
+
+/* .header-home {
+  width: 100vw;
+  height: 20vh;
+  background: #5661f2;
+  display: flex;
+} */
+
+.headerEdit {
   width: 100vw;
   height: 10vh;
   background: #5661f2;
